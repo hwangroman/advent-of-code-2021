@@ -1,0 +1,3 @@
+from functools import reduce
+from operator import add
+print("Result", reduce( lambda a, b: a * b, reduce(lambda acc, e: acc.update({e[0]: acc[e[0]] + e[1]}) or acc, reversed( tuple( (x, pow(2, i)) for i, x in enumerate( reversed( tuple( map( lambda x: int(x[0]/x[1] + 0.5), map( lambda x: tuple(x), reduce( lambda a, b: map( lambda x, y: map( add, x, y ), a, b ), map( lambda line: tuple( map( lambda char: (int(char), 1), line[:-1] ) ), open("input.txt") ))))))))), {0: 0, 1: 0}).values()))
